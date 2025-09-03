@@ -2,6 +2,10 @@
 
 Este repositório contém o backend de um bot para o Telegram focado no gerenciamento de despesas pessoais. O projeto é dividido em duas partes principais: o bot que interage com o usuário, desenvolvido em Java e rodando em uma função AWS Lambda, e uma API de processamento em Go, responsável por registrar as despesas em uma planilha do Google Sheets de forma assíncrona.
 
+## Como utilizar?
+
+Para acessar o bot, basta procurar por [@BillsManagerBot](https://t.me/BillsManagerBot) no Telegram e iniciar uma conversa. O bot guiará você pelo processo de adicionar, listar, atualizar e deletar suas despesas.
+
 ## ✨ Funcionalidades
 
 * **Adicionar Despesas:** Um fluxo de conversa completo para registrar valor, descrição, método de pagamento e categoria.
