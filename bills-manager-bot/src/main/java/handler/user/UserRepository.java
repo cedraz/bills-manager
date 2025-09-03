@@ -2,12 +2,10 @@ package handler.user;
 
 import handler.dynamo.DynamoDB;
 import handler.enums.ConversationState;
-import handler.enums.PaymentMethod;
 import handler.expense.Expense;
 import software.amazon.awssdk.services.dynamodb.model.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 

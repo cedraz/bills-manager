@@ -14,10 +14,8 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-
-	if err != nil {
-		log.Fatalf("Error loading .env file")
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found, using environment variables from system")
 	}
 
 	r := chi.NewRouter()
@@ -38,12 +36,12 @@ func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		port = "3000"
+		port = "3005"
 	}
 
 	go src.Worker()
 
-	fmt.Println("API running on port: 3000")
+	fmt.Printf("\n API running on port: %s\n", port)
 	http.ListenAndServe(fmt.Sprintf(":%s", port), r)
 }
 

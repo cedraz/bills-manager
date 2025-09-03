@@ -12,6 +12,7 @@ import handler.handlers.SpreadsheetHandler;
 import handler.handlers.SummaryHandler;
 import handler.handlers.expense_handlers.AddExpenseHandler;
 import handler.handlers.StartHandler;
+import handler.handlers.expense_handlers.DeleteExpenseHandler;
 import handler.handlers.expense_handlers.GetExpensesHandler;
 import handler.handlers.expense_handlers.UpdateExpenseHandler;
 import handler.telegram.Chat;
@@ -120,6 +121,10 @@ public class AwsLambdaFunctions implements RequestHandler<Map<String, Object>, S
                 SpreadsheetHandler spreadsheetHandler = new SpreadsheetHandler(telegramBot, userRepository);
                 spreadsheetHandler.saveSpreadsheetId(update, context);
                 break;
+            case AWAITING_EXPENSE_ID_DELETE_EXPENSE:
+                DeleteExpenseHandler deleteExpenseHandler = new DeleteExpenseHandler(telegramBot, expenseRepository, userRepository, user);
+                deleteExpenseHandler.deleteExpense(update, context);
+                break;
             default:
                 telegramBot.sendMessage(chatId, "Estado de conversa desconhecido. Por favor, use /ajuda.", context);
                 user.setConversationState(ConversationState.NONE);
@@ -186,14 +191,19 @@ public class AwsLambdaFunctions implements RequestHandler<Map<String, Object>, S
                 return false;
             case SKIP_CATEGORY_UPDATE:
                 return false;
-            case DELETE_EXPENSE:
-                return false;
             case ADD_SPREADSHEET:
                 SpreadsheetHandler spreadsheetHandler = new SpreadsheetHandler(telegramBot, userRepository);
                 spreadsheetHandler.handle(update, context);
                 return true;
             case SUMMARY:
                 new SummaryHandler(telegramBot, userRepository, expenseRepository).handle(update, context);
+                return true;
+            case DELETE_EXPENSE:
+                DeleteExpenseHandler deleteExpenseHandler = new DeleteExpenseHandler(telegramBot, expenseRepository, userRepository);
+                deleteExpenseHandler.handle(update, context);
+                return true;
+            case CANCEL_EXPENSE_DELETION:
+                new DeleteExpenseHandler(telegramBot, expenseRepository, userRepository).cancelExpenseDeletion(update, context);
                 return true;
             default:
                 context.getLogger().log("Texto '" + messageText + "' não é um comando reconhecido.");

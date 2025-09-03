@@ -1,6 +1,7 @@
 package handler.handlers.expense_handlers;
 
 import com.amazonaws.services.lambda.runtime.Context;
+import handler.enums.Command;
 import handler.enums.ConversationState;
 import handler.enums.ParseMode;
 import handler.enums.PaymentMethod;
@@ -58,7 +59,7 @@ public class AddExpenseHandler extends BaseHandler {
 
         InlineKeyboardButton btnCancel = new InlineKeyboardButton();
         btnCancel.setText("Cancelar");
-        btnCancel.setCallbackData("/cancelExpenseProcess");
+        btnCancel.setCallbackData(Command.CANCEL_EXPENSE_PROCESS.getCommandText());
         List<List<InlineKeyboardButton>> keyboard = Arrays.asList( Arrays.asList(btnCancel) );
         InlineKeyboardMarkup inlineKeyboard = telegramBot.createInlineKeyboard(keyboard);
 
@@ -80,7 +81,7 @@ public class AddExpenseHandler extends BaseHandler {
 
             InlineKeyboardButton btnCancel = new InlineKeyboardButton();
             btnCancel.setText("Cancelar");
-            btnCancel.setCallbackData("/cancelExpenseProcess");
+            btnCancel.setCallbackData(Command.CANCEL_EXPENSE_PROCESS.getCommandText());
             List<List<InlineKeyboardButton>> keyboard = Arrays.asList( Arrays.asList(btnCancel) );
             InlineKeyboardMarkup inlineKeyboard = telegramBot.createInlineKeyboard(keyboard);
 
@@ -117,7 +118,7 @@ public class AddExpenseHandler extends BaseHandler {
 
             InlineKeyboardButton btnSkip = new InlineKeyboardButton();
             btnSkip.setText("Pular");
-            btnSkip.setCallbackData("/skipPaymentMethod");
+            btnSkip.setCallbackData(Command.SKIP_PAYMENT_METHOD.getCommandText());
 
             List<List<InlineKeyboardButton>> keyboard = new ArrayList<>(PaymentMethod.getButtonLists());
 
@@ -143,7 +144,7 @@ public class AddExpenseHandler extends BaseHandler {
 
             InlineKeyboardButton btnSkip = new InlineKeyboardButton();
             btnSkip.setText("Pular");
-            btnSkip.setCallbackData("/skipPaymentMethod");
+            btnSkip.setCallbackData(Command.SKIP_PAYMENT_METHOD.getCommandText());
 
             List<List<InlineKeyboardButton>> keyboard = new ArrayList<>(PaymentMethod.getButtonLists());
 
@@ -161,7 +162,7 @@ public class AddExpenseHandler extends BaseHandler {
 
         InlineKeyboardButton btnCancel = new InlineKeyboardButton();
         btnCancel.setText("Cancelar");
-        btnCancel.setCallbackData("/cancelExpenseProcess");
+        btnCancel.setCallbackData(Command.CANCEL_EXPENSE_PROCESS.getCommandText());
 
         InlineKeyboardButton btnSkip = new InlineKeyboardButton();
         btnSkip.setText("Pular");

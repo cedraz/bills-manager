@@ -1,6 +1,7 @@
 package handler.handlers;
 
 import com.amazonaws.services.lambda.runtime.Context;
+import handler.enums.Command;
 import handler.enums.ParseMode;
 import handler.telegram.Update;
 import handler.telegram.TelegramBot;
@@ -34,15 +35,15 @@ public class StartHandler extends BaseHandler{
 
         InlineKeyboardButton btnAdd = new InlineKeyboardButton();
         btnAdd.setText("➕ Adicionar Despesa");
-        btnAdd.setCallbackData("/adicionarDespesa");
+        btnAdd.setCallbackData(Command.ADD_EXPENSE.getCommandText());
 
         InlineKeyboardButton btnAddSpreadsheet = new InlineKeyboardButton();
         btnAddSpreadsheet.setText("📊 Adicionar Planilha");
-        btnAddSpreadsheet.setCallbackData("/adicionarPlanilha");
+        btnAddSpreadsheet.setCallbackData(Command.ADD_SPREADSHEET.getCommandText());
 
         InlineKeyboardButton btnHelp = new InlineKeyboardButton();
         btnHelp.setText("❓ Ajuda");
-        btnHelp.setCallbackData("/ajuda");
+        btnHelp.setCallbackData(Command.HELP.getCommandText());
 
         List<List<InlineKeyboardButton>> keyboard = Arrays.asList(
                 Arrays.asList(btnAddSpreadsheet),

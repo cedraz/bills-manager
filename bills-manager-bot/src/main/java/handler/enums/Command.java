@@ -19,6 +19,7 @@ public enum Command {
     SKIP_CATEGORY_UPDATE("/skipCategoryUpdate"),
 
     DELETE_EXPENSE("/deletar_despesa"),
+    CANCEL_EXPENSE_DELETION("/cancelExpenseDeletion"),
 
     ADD_SPREADSHEET("/adicionar_planilha"),
 
